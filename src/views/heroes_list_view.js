@@ -8,6 +8,7 @@ const HeroesListView = function () {
 HeroesListView.prototype.bindEvents = function () {
   PubSub.subscribe('Heroes:all-ready', (event) => {
     // console.log(event.detail);
+    this.element.innerHTML = '';
     event.detail.forEach((hero) => {
       const heroView = new HeroView(this.element, hero)
       // console.log(this.element);
