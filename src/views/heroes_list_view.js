@@ -1,18 +1,19 @@
 const PubSub = require('../helpers/pub_sub.js');
+const HeroView = require('./hero_view.js');
 
-const HeroesListView = function (element) {
-  this.element = element;
+const HeroesListView = function () {
+  this.element = document.querySelector('#heroes-list');
 }
 
 HeroesListView.prototype.bindEvents = function () {
   PubSub.subscribe('Heroes:all-ready', (event) => {
     // console.log(event.detail);
-    this.element.innerHTML = '';
-    element.detail.forEach(hero => {
+    event.detail.forEach((hero) => {
       const heroView = new HeroView(this.element, hero)
+      // console.log(this.element);
       heroView.render();
-    })
-  })
+    });
+  });
 };
 
 module.exports = HeroesListView;

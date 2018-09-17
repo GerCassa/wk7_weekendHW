@@ -6,11 +6,11 @@ const Heroes = function () {
 };
 
 Heroes.prototype.getData = function () {
-  request = new RequestHelper('https://api.opendota.com/api/heroes');
-  request.get(data => {
+    const requestInfo = new RequestHelper('https://api.opendota.com/api/heroes');
+  requestInfo.get(data => {
     this.data = data;
+    PubSub.publish('Heroes:all-ready', this.data);
    // console.log(this.data);
-   PubSub.publish('Heroes:all-ready', this.data);
   })
 };
 
